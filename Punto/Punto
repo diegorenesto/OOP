@@ -1,10 +1,19 @@
+import java.util.Scanner;
+
 public class Punto {
     // metodo set e get del costruttore
     // metodo determina punto nello spazio
     // metodo per determinare in che quadrante si trova
 
+    Scanner tastiera = new Scanner(System.in);
     private int x;
     private int y;
+
+    public void Punto() {
+        this.x = tastiera.nextInt();
+        this.y = tastiera.nextInt();
+    }
+
 
     public int getX() {
         return x;
@@ -38,7 +47,7 @@ public class Punto {
 
 
     public String toString() {
-        return String.format("X: " + getX()) + " Y: " + getY();
+        return String.format("X: " + getX()) + "; Y: " + getY();
     }
 
     @Override
