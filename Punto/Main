@@ -17,5 +17,11 @@ public class Main {
         System.out.println();
         System.out.println(p.determinaQuadrante());  // metodo della classe Punto
 
+        Punto p2 = new Punto();
+        System.out.println("Inserisci le coordinate di un nuovo punto");
+        p2.Punto();
+        System.out.println("Coordinate:");
+        System.out.println(p2.toString());
+
     }
 }
