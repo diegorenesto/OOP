@@ -1,0 +1,41 @@
+public class Auto {
+
+    private String scuderia;
+    private int cilindrata;
+    private Pilota pilota;
+
+    public Auto() {
+    }
+
+
+    public void setScuderia(String _scuderia) {
+        this.scuderia = _scuderia;
+    }
+
+    public void setCilindrata(int _cilindrata) {
+        this.cilindrata = _cilindrata;
+    }
+
+    public String getScuderia() {
+        return scuderia;
+    }
+
+    public int getCilindrata() {
+        return cilindrata;
+    }
+
+    public void setPilota(Pilota _pilota) {
+        this.pilota = _pilota;
+    }
+
+
+    @Override
+    public String toString() {
+        return String.format("Scuderia: %s, Cilindrata: %d", scuderia, cilindrata);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
+    }
+}
