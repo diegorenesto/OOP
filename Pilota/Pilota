@@ -1,0 +1,59 @@
+public class Pilota {
+
+    private String nome;
+    private String cognome;
+    private String nazionalita;
+    private int eta;
+
+
+    public Pilota() {
+    }
+
+    public void setNome(String _nome) {
+        this.nome = _nome;
+    }
+
+    public void setCognome(String _cognome) {
+        this.cognome = _cognome;
+    }
+
+    public void setNazionalita(String _nazionalita) {
+        this.nazionalita = _nazionalita;
+    }
+
+    public void setEta(int _eta) {
+        this.eta = _eta;
+    }
+
+    /* public String getNome() {
+        return nome;
+    }
+
+    public String getCognome() {
+        return cognome;
+    }
+
+    public String getNazionalita() {
+        return nazionalita;
+    }
+
+    public int getEta() {
+        return eta;
+    } */
+
+
+    @Override
+    public String toString() {
+        return String.format("Nome: %s, Cognome: %s, Nazionalità: %s, Età: %d", nome, cognome, nazionalita, eta);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        else
+            return false;
+    }
+
+
+}
