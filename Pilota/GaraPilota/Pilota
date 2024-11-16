@@ -1,0 +1,45 @@
+public class Pilota {
+    private String nome;
+    private String cognome;
+    private String nazionalita;
+    private int eta;
+
+    public Pilota(String nome, String cognome, String nazionalita, int eta) {
+        this.nome = nome;
+        this.cognome = cognome;
+        this.nazionalita = nazionalita;
+        this.eta = eta;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public String getCognome() {
+        return cognome;
+    }
+
+    public String getNazionalita() {
+        return nazionalita;
+    }
+
+    public int getEta() {
+        return eta;
+    }
+
+
+    @Override
+    public String toString() {
+        return nome + " " + cognome + " (" + eta + " anni) - Nazionalità: " + nazionalita;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Pilota pilota = (Pilota) o;
+        return eta == pilota.eta &&
+                nome.equals(pilota.nome) &&
+                cognome.equals(pilota.cognome);
+    }
+}
