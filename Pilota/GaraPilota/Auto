@@ -1,0 +1,29 @@
+public class Auto {
+    private String scuderia;
+    private Pilota pilota;
+    private int cilindrata;
+
+    public Auto(String scuderia, Pilota pilota, int cilindrata) {
+        this.scuderia = scuderia;
+        this.pilota = pilota;
+        this.cilindrata = cilindrata;
+    }
+
+    public String getScuderia() {
+        return scuderia;
+    }
+
+    public Pilota getPilota() {
+        return pilota;
+    }
+
+    public int getCilindrata() {
+        return cilindrata;
+    }
+
+    // toString method
+    @Override
+    public String toString() {
+        return "Scuderia: " + scuderia + ", Pilota: " + pilota.toString() + ", Cilindrata: " + cilindrata;
+    }
+}
