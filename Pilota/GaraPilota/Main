@@ -1,0 +1,55 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        ArrayList<Pilota> piloti = new ArrayList<>();
+        ArrayList<Auto> autoInGara =new ArrayList<>();
+
+        try {
+
+            for (int i = 0; i < 2; i++) {
+                System.out.println("Inserisci i dati del pilota " + (i + 1));
+                System.out.print("Nome: ");
+                String nome = scanner.nextLine();
+                System.out.print("Cognome: ");
+                String cognome = scanner.nextLine();
+                System.out.print("Nazionalità: ");
+                String nazionalita = scanner.nextLine();
+                System.out.print("Età: ");
+                int eta = Integer.parseInt(scanner.nextLine());
+
+                Pilota pilota = new Pilota(nome, cognome, nazionalita, eta);
+
+                if (!piloti.add(pilota)) {
+                    System.out.println("Errore: Pilota già esistente con nome, cognome ed età uguali.");
+                    i--;
+                    continue;
+                }
+
+                System.out.print("Scuderia: ");
+                String scuderia = scanner.nextLine();
+                System.out.print("Cilindrata: ");
+                int cilindrata = Integer.parseInt(scanner.nextLine());
+
+                Auto auto = new Auto(scuderia, pilota, cilindrata);
+                autoInGara.add(auto);
+            }
+
+            System.out.print("Nome della gara: ");
+            String nomeGara = scanner.nextLine();
+            Gara gara = new Gara(nomeGara);
+
+            for (Auto auto : autoInGara) {
+                gara.aggiungiAuto(auto);
+            }
+
+            System.out.println(gara.corriGara());
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+
+        }
+    }
+}
