@@ -1,0 +1,30 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner tastiera = new Scanner(System.in);
+
+        Punto p = new Punto();
+        System.out.println("Inserisci la prima coordinata del punto: ");
+        int x = tastiera.nextInt();
+        p.setX(x);
+        System.out.println("Inserisci la seconda coordinata del punto: ");
+        int y = tastiera.nextInt();
+        p.setY(y);
+        System.out.println("Ecco le coordinate del punto");
+        System.out.println(p.toString());
+
+        System.out.println();
+        System.out.println(p.determinaQuadrante());  // metodo della classe Punto
+
+        Punto p2 = new Punto();
+        System.out.println("Inserisci le coordinate di un nuovo punto");
+        p2.Punto();
+        System.out.println("Coordinate:");
+        System.out.println(p2.toString());
+
+        Segmento s = new Segmento(p, p2);
+        System.out.println(p.toString());  // non stampa
+
+    }
+}
