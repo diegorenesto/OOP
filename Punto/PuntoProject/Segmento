@@ -1,0 +1,29 @@
+import java.util.ArrayList;
+
+public class Segmento {
+
+    public Segmento(Punto punto1, Punto punto2) {
+        this.punto1 = punto1;
+        this.punto2 = punto2;
+    }
+
+    Punto punto1 = new Punto();
+    Punto punto2 = new Punto();
+
+
+    public Segmento creaSegmento(Punto punto1, Punto punto2) {
+        Segmento segmento1 = new Segmento(punto1, punto2);
+        return segmento1;
+    }
+
+    int distanzaX = punto1.getX() - punto2.getX();
+    int distanzaY = punto1.getY() - punto2.getY();
+
+
+    @Override
+    public String toString() {
+        return String.format("Distanza x: %d, Distanza y: %d", distanzaX, distanzaY);
+    }
+
+
+}
