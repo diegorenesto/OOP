@@ -1,29 +1,20 @@
-import java.util.ArrayList;
-
 public class Segmento {
+    private Punto p1;
+    private Punto p2;
 
-    public Segmento(Punto punto1, Punto punto2) {
-        this.punto1 = punto1;
-        this.punto2 = punto2;
+    public Segmento(Punto p1, Punto p2) {
+        this.p1 = p1;
+        this.p2 = p2;
     }
 
-    Punto punto1 = new Punto();
-    Punto punto2 = new Punto();
-
-
-    public Segmento creaSegmento(Punto punto1, Punto punto2) {
-        Segmento segmento1 = new Segmento(punto1, punto2);
-        return segmento1;
+    public double lunghezza() {
+        int deltaX = p2.getX() - p1.getX();
+        int deltaY = p2.getY() - p1.getY();
+        return Math.sqrt(deltaX * deltaX + deltaY * deltaY);
     }
-
-    int distanzaX = punto1.getX() - punto2.getX();
-    int distanzaY = punto1.getY() - punto2.getY();
-
 
     @Override
     public String toString() {
-        return String.format("Distanza x: %d, Distanza y: %d", distanzaX, distanzaY);
+        return "Segmento tra " + p1.toString() + " e " + p2.toString();
     }
-
-
 }
