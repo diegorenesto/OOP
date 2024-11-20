@@ -1,59 +1,53 @@
-
 import java.util.Scanner;
 
-public class Punto {
-    // metodo set e get del costruttore
-    // metodo determina punto nello spazio
-    // metodo per determinare in che quadrante si trova
+public class Main {
+    public static void main(String[] args) {
+        Scanner tastiera = new Scanner(System.in);
 
-    Scanner tastiera = new Scanner(System.in);
-    private int x;
-    private int y;
+        System.out.println("Inserisci la prima coordinata del punto: ");
+        int x = tastiera.nextInt();
+        System.out.println("Inserisci la seconda coordinata del punto: ");
+        int y = tastiera.nextInt();
 
-    public void Punto() {
-        this.x = tastiera.nextInt();
-        this.y = tastiera.nextInt();
-    }
+        Punto p = new Punto();
+        p.setX(x);
+        p.setY(y);
 
+        System.out.println("Ecco le coordinate del primo punto: " + p.toString());
+        System.out.println(p.determinaQuadrante());
 
-    public int getX() {
-        return x;
-    }
+        System.out.println("\nInserisci le coordinate di un nuovo punto: ");
+        Punto p2 = new Punto();
+        p2.Punto();
 
-    public void setX(int a) {
-        this.x = a;
-    }
+        System.out.println("Coordinate del secondo punto: " + p2.toString());
 
-    public int getY() {
-        return y;
-    }
+        Segmento s = new Segmento(p, p2);
+        System.out.println("\nCreazione del segmento tra il primo e il secondo punto: ");
+        System.out.println(s.toString());
+        System.out.println("La lunghezza del segmento è: " + s.lunghezza() + " unità\n");
 
-    public void setY(int b) {
-        this.y = b;
-    }
+        // rettangolo
+        try {
+            System.out.println("Inserisci le coordinate dell'angolo in alto a sinistra del rettangolo (x, y):");
+            int xRett = tastiera.nextInt();
+            int yRett = tastiera.nextInt();
+            Punto angoloInAltoSinistra = new Punto();
+            angoloInAltoSinistra.setX(xRett);
+            angoloInAltoSinistra.setY(yRett);
 
-    public String determinaQuadrante() {
-        if (x > 0 && y > 0) {
-            return "Il punto si trova nel primo quadrante";
-        } else if (x < 0 && y > 0) {
-            return "Il punto si trova nel secondo quadrante";
-        } else if (x < 0 && y < 0) {
-            return "Il punto si trova nel terzo quadrante";
-        } else if (x > 0 && y < 0) {
-            return "Il punto si trova nel quarto quadrante";
-        } else {
-            return "Il punto si trova sull'origine";
+            System.out.println("Inserisci la base del rettangolo: ");
+            int base = tastiera.nextInt();
+            System.out.println("Inserisci l'altezza del rettangolo: ");
+            int altezza = tastiera.nextInt();
+
+            Rettangolo rettangolo = new Rettangolo(angoloInAltoSinistra, base, altezza);
+
+            System.out.println("\nDettagli del rettangolo creato: ");
+            System.out.println(rettangolo.toString());
+        } catch (Exception e) {
+            // Se il rettangolo è fuori dal primo quadrante, viene lanciata un'eccezione
+            System.out.println(e.getMessage());
         }
-    }
-
-
-    @Override
-    public String toString() {
-        return String.format("X: " + getX()) + "; Y: " + getY();
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        return super.equals(obj);
     }
 }
