@@ -1,30 +1,59 @@
+
 import java.util.Scanner;
 
-public class Main {
-    public static void main(String[] args) {
-        Scanner tastiera = new Scanner(System.in);
+public class Punto {
+    // metodo set e get del costruttore
+    // metodo determina punto nello spazio
+    // metodo per determinare in che quadrante si trova
 
-        Punto p = new Punto();
-        System.out.println("Inserisci la prima coordinata del punto: ");
-        int x = tastiera.nextInt();
-        p.setX(x);
-        System.out.println("Inserisci la seconda coordinata del punto: ");
-        int y = tastiera.nextInt();
-        p.setY(y);
-        System.out.println("Ecco le coordinate del punto");
-        System.out.println(p.toString());
+    Scanner tastiera = new Scanner(System.in);
+    private int x;
+    private int y;
 
-        System.out.println();
-        System.out.println(p.determinaQuadrante());  // metodo della classe Punto
+    public void Punto() {
+        this.x = tastiera.nextInt();
+        this.y = tastiera.nextInt();
+    }
 
-        Punto p2 = new Punto();
-        System.out.println("Inserisci le coordinate di un nuovo punto");
-        p2.Punto();
-        System.out.println("Coordinate:");
-        System.out.println(p2.toString());
 
-        Segmento s = new Segmento(p, p2);
-        System.out.println(p.toString());  // non stampa
+    public int getX() {
+        return x;
+    }
 
+    public void setX(int a) {
+        this.x = a;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setY(int b) {
+        this.y = b;
+    }
+
+    public String determinaQuadrante() {
+        if (x > 0 && y > 0) {
+            return "Il punto si trova nel primo quadrante";
+        } else if (x < 0 && y > 0) {
+            return "Il punto si trova nel secondo quadrante";
+        } else if (x < 0 && y < 0) {
+            return "Il punto si trova nel terzo quadrante";
+        } else if (x > 0 && y < 0) {
+            return "Il punto si trova nel quarto quadrante";
+        } else {
+            return "Il punto si trova sull'origine";
+        }
+    }
+
+
+    @Override
+    public String toString() {
+        return String.format("X: " + getX()) + "; Y: " + getY();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
     }
 }
