@@ -30,24 +30,30 @@ public class Main {
         // rettangolo
         try {
             System.out.println("Inserisci le coordinate dell'angolo in alto a sinistra del rettangolo (x, y):");
-            int xRett = tastiera.nextInt();
-            int yRett = tastiera.nextInt();
-            Punto angoloInAltoSinistra = new Punto();
-            angoloInAltoSinistra.setX(xRett);
-            angoloInAltoSinistra.setY(yRett);
+            try {
+                int xRett = tastiera.nextInt();
+                int yRett = tastiera.nextInt();
+                if (xRett == yRett)
+                    throw new Exception("Hai inserito un quadrato");
+                Punto angoloInAltoSinistra = new Punto();
+                angoloInAltoSinistra.setX(xRett);
+                angoloInAltoSinistra.setY(yRett);
+                System.out.println("Inserisci la base del rettangolo: ");
+                int base = tastiera.nextInt();
+                System.out.println("Inserisci l'altezza del rettangolo: ");
+                int altezza = tastiera.nextInt();
 
-            System.out.println("Inserisci la base del rettangolo: ");
-            int base = tastiera.nextInt();
-            System.out.println("Inserisci l'altezza del rettangolo: ");
-            int altezza = tastiera.nextInt();
+                Rettangolo rettangolo = new Rettangolo(angoloInAltoSinistra, base, altezza);
 
-            Rettangolo rettangolo = new Rettangolo(angoloInAltoSinistra, base, altezza);
+                System.out.println("\nDettagli del rettangolo creato: ");
+                System.out.println(rettangolo.toString());
 
-            System.out.println("\nDettagli del rettangolo creato: ");
-            System.out.println(rettangolo.toString());
+                double diagonale = rettangolo.calcolaDiagonaleRettangolo(xRett, yRett);
+                System.out.println("La diagonale del rettangolo e': " + diagonale);
 
-            double diagonale = rettangolo.calcolaDiagonaleRettangolo(xRett, yRett);
-            System.out.println("La diagonale del rettangolo e': " + diagonale);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
 
         } catch (Exception e) {
             // Se il rettangolo è fuori dal primo quadrante, viene lanciata un'eccezione
