@@ -34,7 +34,7 @@ public class Rettangolo {
 
     }
 
-    public static double calcolaDiagonaleRettangolo(double lunghezza, double larghezza) {
+    public double calcolaDiagonaleRettangolo(double lunghezza, double larghezza) {
         double diagonale = Math.sqrt(Math.pow(lunghezza, 2) + Math.pow(larghezza, 2));
         return diagonale;
     }
