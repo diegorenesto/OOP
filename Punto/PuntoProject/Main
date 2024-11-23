@@ -45,6 +45,10 @@ public class Main {
 
             System.out.println("\nDettagli del rettangolo creato: ");
             System.out.println(rettangolo.toString());
+
+            double diagonale = rettangolo.calcolaDiagonaleRettangolo(x, y);
+            System.out.println("La diagonale del rettangolo e': " + diagonale);
+            
         } catch (Exception e) {
             // Se il rettangolo è fuori dal primo quadrante, viene lanciata un'eccezione
             System.out.println(e.getMessage());
