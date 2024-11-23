@@ -1,3 +1,4 @@
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,6 +32,11 @@ public class Rettangolo {
         this.segmenti.add(new Segmento(angoloInBassoDestra, angoloInBassoSinistra));
         this.segmenti.add(new Segmento(angoloInBassoSinistra, angoloInAltoSinistra));
 
+    }
+
+    public static double calcolaDiagonaleRettangolo(double lunghezza, double larghezza) {
+        double diagonale = Math.sqrt(Math.pow(lunghezza, 2) + Math.pow(larghezza, 2));
+        return diagonale;
     }
 
     public List<Segmento> getSegmenti() {
