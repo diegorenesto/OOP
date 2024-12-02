@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Frazione {
     private int numeratore;
     private int denominatore;
@@ -5,7 +7,6 @@ public class Frazione {
     public Frazione(int numeratore, int denominatore) {
         this.numeratore = numeratore;
         this.denominatore = denominatore;
-        semplifica();  // riduce ai minimi termini
     }
 
     private static int mcd(int a, int b) {
@@ -14,13 +15,16 @@ public class Frazione {
             b = a % b;
             a = temp;
         }
-        return Math.abs(a);
+        return a;
     }
 
-    private void semplifica() {
-        int mcd = mcd(numeratore, denominatore);
-        numeratore /= mcd;
-        denominatore /= mcd;
+    public static Frazione creaFrazione(Scanner tastiera) throws Exception {
+        int numeratore = tastiera.nextInt();
+        int denominatore = tastiera.nextInt();
+        if (denominatore == 0) {
+            throw new Exception("Il denominatore non puo' essere 0");
+        }
+        return new Frazione(numeratore, denominatore);
     }
 
     public Frazione sommaFrazioni(Frazione f2) {  // frazione
