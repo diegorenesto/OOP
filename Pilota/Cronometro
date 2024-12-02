@@ -1,0 +1,46 @@
+import java.time.LocalTime;
+
+public class Cronometro {
+    // avvia
+    // isRunning
+    // interrompi
+    // azzera
+    // visualizza quanto tempo e' trascorso
+    // giri
+
+    private LocalTime avvio;
+    private LocalTime interruzione;
+    private boolean isRunning = false;
+
+    /* public Cronometro(LocalTime avvio, LocalTime interruzione, boolean isRunning) {
+        this.avvio = avvio;
+        this.interruzione = interruzione;
+        this.isRunning = isRunning;
+    } */
+
+    public void avvia() {
+        if (isRunning)
+            System.out.println("Cronometro gia' in esecuzione");
+        isRunning = true;
+        System.out.println("Cronometro avviato");
+        avvio = LocalTime.now();
+    }
+
+    public void interrompi() {
+        if (!isRunning)
+            System.out.println("Il cronometro non e' in corso");
+        isRunning = false;
+        interruzione = LocalTime.now();
+        System.out.println("Cronometro interrotto");
+//        System.out.println("Il tempo registrato e': " + );
+    }
+
+    public void azzera() {
+        avvio = null;
+        interruzione = null;
+        isRunning = false;
+        System.out.println("Cronometro azzerato");
+    }
+
+
+}
