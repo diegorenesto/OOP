@@ -1,62 +1,87 @@
 import java.util.Random;
 import java.util.Scanner;
 
+import static utility.Tools.Menu;
+
 public class Main {
     public static void main(String[] args) throws Exception {
         Scanner tastiera = new Scanner(System.in);
         Random random = new Random();
-        int cilindrata = random.nextInt(1000, 5000);
-        int cilindrata2 = random.nextInt(1000, 5000);
+        boolean uscita = false;
+        Pilota pilota1 = null, pilota2 = null;
+        Scuderia scuderia1 = null, scuderia2 = null;
+        Cronometro cr1 = null, cr2 = null;
 
-        System.out.println("Inserisci il nome della Scuderia 1:");
-        String nomeScuderia1 = tastiera.nextLine();
-        System.out.println("Inserisci il nome della Scuderia 2:");
-        String nomeScuderia2 = tastiera.nextLine();
+        String[] opzioni = {"---GARA AUTOMOBILISTICA---", "1. Inserimento Pilota", "2. Scuderia", "3. Cronometro", "4. Risultato", "5. Fine"};
 
+        while (!uscita) {
+            int scelta = Menu(opzioni, tastiera);
+            switch (scelta) {
+                case 1 -> {
+                    System.out.println("Inserimento pilota 1");
+                    pilota1 = metodoCreazionePilota(tastiera);
+                    System.out.println("Inserimento pilota 1");
+                    pilota2 = metodoCreazionePilota(tastiera);
+                }
 
-        Pilota pilota1 = new Pilota("Diego", "Renesto", "Italia");
-        Pilota pilota2 = new Pilota("Yassir", "Zanforlin", "Germania");
+                case 2 -> {
+                    System.out.println("Scuderia");
+                    System.out.println("Inserisci il nome della Scuderia 1: ");
+                    String nomeScuderia1 = tastiera.nextLine();
+                    System.out.println("Inserisci il nome della Scuderia 2: ");
+                    String nomeScuderia2 = tastiera.nextLine();
 
-        Scuderia scuderia1 = new Scuderia(nomeScuderia1, cilindrata, pilota1);
-        Scuderia scuderia2 = new Scuderia(nomeScuderia2, cilindrata2, pilota2);
+                    // Creazione delle scuderie
+                    scuderia1 = new Scuderia(nomeScuderia1, random.nextInt(1000, 5000), pilota1);
+                    scuderia2 = new Scuderia(nomeScuderia2, random.nextInt(1000, 5000), pilota2);
 
+                    Gara gara = new Gara("Gran Premio");
+                    gara.aggiungiScuderia(scuderia1);
+                    gara.aggiungiScuderia(scuderia2);
+                }
 
-        Gara gara = new Gara("Gran Premio");
-        gara.aggiungiScuderia(scuderia1);
-        gara.aggiungiScuderia(scuderia2);
+                case 3 -> {
+                    System.out.println("Cronometro");
+                    cr1 = new Cronometro();
+                    cr2 = new Cronometro();
 
-        Cronometro cr1 = new Cronometro();
-        Cronometro cr2 = new Cronometro();
+                    int tempoGiro1 = random.nextInt(1000, 5000);
+                    int tempoGiro2 = random.nextInt(1000, 5000);
 
-        int tempoGiro1 = random.nextInt(1000, 5000);
-        int tempoGiro2 = random.nextInt(1000, 5000);
+                    // inizio gara
+                    cr1.setStartTime();
+                    wait(tempoGiro1);
+                    cr1.setEndTime();
+                    cr1.calcolaIntTimer();
 
-        // inizio gara
-        cr1.setStartTime();
-        wait(tempoGiro1);
-        cr1.setEndTime();
-        cr1.calcolaIntTimer();
+                    cr2.setStartTime();
+                    wait(tempoGiro2);
+                    cr2.setEndTime();
+                    cr2.calcolaIntTimer();
 
-        cr2.setStartTime();
-        wait(tempoGiro2);
-        cr2.setEndTime();
-        cr2.calcolaIntTimer();
+                    System.out.println("Tempo Scuderia 1: " + cr1.getTempoGiro() + " secondi");
+                    System.out.println("Tempo Scuderia 2: " + cr2.getTempoGiro() + " secondi");
+                }
 
+                case 4 -> {
+                    System.out.println("Risultato: ");
+                    if (cr1.getTempoGiro() < cr2.getTempoGiro()) {
+                        System.out.println("La scuderia " + scuderia1.getScuderia() + " con il pilota " + scuderia1.getPilota().getNome() + " ha vinto");
+                    } else if (cr1.getTempoGiro() > cr2.getTempoGiro()) {
+                        System.out.println("La scuderia " + scuderia2.getScuderia() + " con il pilota " + scuderia2.getPilota().getNome() + " ha vinto");
+                    } else {
+                        System.out.println("La gara è finita in pareggio");
+                    }
+                }
 
-        System.out.println("Tempo Scuderia 1: " + cr1.getTempoGiro() + " secondi");
-        System.out.println("Tempo Scuderia 2: " + cr2.getTempoGiro() + " secondi");
-
-
-
-        if (cr1.getTempoGiro() < cr2.getTempoGiro()) {
-            System.out.println("La scuderia " + scuderia1.getScuderia() + " con il pilota " + scuderia1.getPilota().getNome() + " ha vinto");
-        } else if (cr1.getTempoGiro() > cr2.getTempoGiro()) {
-            System.out.println("La scuderia " + scuderia2.getScuderia() + " con il pilota " + scuderia2.getPilota().getNome() + " ha vinto");
-        } else {
-            System.out.println("La gara è finita in pareggio");
+                case 5 -> {
+                    System.out.println("Fine");
+                    uscita = true;
+                }
+            }
         }
-
     }
+
 
     private static void wait(int tempo) {
         try {
@@ -65,4 +90,16 @@ public class Main {
             System.out.println(e.getMessage());
         }
     }
+
+    public static Pilota metodoCreazionePilota(Scanner tastiera) {
+        System.out.println("Inserisci il nome del pilota: ");
+        String nome = tastiera.nextLine();
+        System.out.println("Inserisci il cognome del pilota: ");
+        String cognome = tastiera.nextLine();
+        System.out.println("Inserisci la nazionalita del pilota: ");
+        String nazionalita = tastiera.nextLine();
+
+        return new Pilota(nome, cognome, nazionalita);
+    }
+
 }
