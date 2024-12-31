@@ -24,7 +24,9 @@ public class Main {
         while (!uscita) {
             int scelta = Menu(opzioni, tastiera);
             switch (scelta) {
-                case 1:
+
+                case 1 -> {
+
                     System.out.print("Inserisci marca CPU: ");
                     String marca = tastiera.nextLine();
                     System.out.print("Inserisci identifier: ");
@@ -33,25 +35,31 @@ public class Main {
                     int ram = tastiera.nextInt();
                     tastiera.nextLine();
                     carrello.aggiungiTablet(new Tablet(marca, id, ram, Stato.SPENTO));
+                }
 
-                case 2:
+                case 2 -> {
                     System.out.print("Inserisci l'identifier del tablet da rimuovere: ");
+
                     int idRimuovi = tastiera.nextInt();
                     carrello.rimuoviTablet(idRimuovi);
+                }
 
-                case 3:
+                case 3 -> {
                     System.out.print("Inserisci l'identifier del tablet: ");
                     int idModifica = tastiera.nextInt();
                     System.out.println("Scegli il nuovo stato: 1. ACCESO, 2. SPENTO, 3. STANDBY");
                     int statoScelto = tastiera.nextInt();
                     Stato nuovoStato = Stato.values()[statoScelto - 1];
                     carrello.modificaStato(idModifica, nuovoStato);
+                }
 
-                case 4:
+                case 4 -> {
                     carrello.visualizzaTablet();
+                }
 
-                case 5:
+                case 5 -> {
                     System.out.print("Inserisci l'identifier del tablet da cercare: ");
+
                     int idCerca = tastiera.nextInt();
                     Tablet trovato = carrello.cercaTablet(idCerca);
                     if (trovato != null) {
@@ -59,22 +67,26 @@ public class Main {
                     } else {
                         System.out.println("Tablet non trovato.");
                     }
+                }
 
-                case 6:
+                case 6 -> {
                     System.out.println("Scegli lo stato da contare: 1. ACCESO, 2. SPENTO, 3. STANDBY");
+
                     int statoConta = tastiera.nextInt();
                     Stato statoDaContare = Stato.values()[statoConta - 1];
                     int cont = carrello.contaTabletPerStato(statoDaContare);
                     System.out.println("Numero di tablet in stato " + statoDaContare + ": " + cont);
+                }
 
-                case 7:
+                case 7 -> {
                     System.out.println("Fine");
                     uscita = true;
-                default:
-                    System.out.println("Scelta non valida!");
+                }
+                default -> System.out.println("Inserisci una scelta valida!");
             }
+
         }
-
-
     }
+
+
 }
